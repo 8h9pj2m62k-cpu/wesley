@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check-up do Rating Bancário | Wesley Zugel</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06080d;--bg2:#0b111c;--card:#0f1726;--line:#1c2a40;--blue:#1e6fff;--blue2:#3d8bff;--orange:#ff7a1a;--orange2:#ff9a3d;--text:#f4f6fb;--text-muted:#9aa7bd;--green:#22c55e;--yellow:#facc15;--red:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+h2{font-size:clamp(24px,4vw,36px);font-weight:800;text-align:center;line-height:1.2;margin-bottom:12px}
+h2 span{color:var(--orange)}
+.sub{text-align:center;color:var(--text-muted);font-size:16px;max-width:640px;margin:0 auto 40px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--orange),var(--orange2));color:#111;font-weight:800;font-size:17px;padding:18px 34px;border-radius:12px;text-decoration:none;box-shadow:0 10px 30px rgba(255,122,26,.35);transition:transform .2s;text-align:center}
+.btn-primary:hover{transform:translateY(-2px)}
+
+/* HERO */
+.hero{padding:40px 0 0;background:radial-gradient(circle at 80% 20%,rgba(30,111,255,.35),transparent 55%),radial-gradient(circle at 10% 90%,rgba(255,122,26,.18),transparent 45%),var(--bg);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:end}
+.hero-text{padding-bottom:60px}
+.hero-badge{display:inline-block;background:rgba(30,111,255,.15);border:1px solid var(--blue);color:var(--blue2);font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:8px 16px;border-radius:50px;margin-bottom:22px}
+.hero h1{font-size:clamp(32px,5.4vw,56px);font-weight:900;line-height:1.08;margin-bottom:20px}
+.hero h1 span{color:var(--orange)}
+.hero-lead{color:var(--text-muted);font-size:18px;margin-bottom:22px;max-width:520px}
+.hero-sub{display:flex;gap:18px;margin-bottom:28px;flex-wrap:wrap}
+.hero-sub span{font-weight:600;font-size:15px}
+.hero-sub span::before{content:'✓ ';color:var(--orange);font-weight:800}
+.hero-photo{position:relative;text-align:center}
+.hero-photo img{width:100%;max-width:440px;display:block;margin:0 auto;border-radius:24px 24px 0 0;border:2px solid var(--blue);border-bottom:none;-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent)}
+.hero-tag{position:absolute;left:0;bottom:40px;background:var(--bg2);border:1px solid var(--orange);border-radius:14px;padding:12px 16px;text-align:left;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.hero-tag strong{display:block;color:var(--orange);font-size:20px;font-weight:900}
+.hero-tag small{color:var(--text-muted);font-size:12px}
+
+
+/* PREMIOS */
+.hero-awards{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.award-pill{display:flex;align-items:center;gap:6px;background:rgba(255,122,26,.12);border:1px solid var(--orange);border-radius:12px;padding:10px 14px;font-size:14px}
+.award-pill b{color:var(--orange);font-weight:900}
+.award-pill small{color:var(--text-muted);font-size:12px}
+.awards-section{background:linear-gradient(180deg,#0b111c,#06080d);border-top:3px solid var(--orange);border-bottom:1px solid var(--line)}
+.awards-kicker{text-align:center;color:var(--orange);font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.awards-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1040px;margin:0 auto;align-items:start}
+.award-card{background:var(--card);border:2px solid var(--orange);border-radius:22px;overflow:hidden;box-shadow:0 0 50px rgba(255,122,26,.22);transition:transform .2s}
+.award-card:hover{transform:translateY(-4px)}
+.award-img{background:#000}
+.award-img img{width:100%;height:auto;display:block}
+.award-info{padding:22px 24px;text-align:center;background:linear-gradient(180deg,#101b30,#0a0f18)}
+.award-num{font-size:clamp(34px,5vw,48px);font-weight:900;line-height:1;margin-bottom:8px;letter-spacing:1px}
+.award-num span{color:var(--orange)}
+.award-info p{color:var(--text-muted);font-size:15px}
+.award-info strong{color:var(--text)}
+@media(max-width:820px){.awards-grid{grid-template-columns:1fr}.hero-awards{justify-content:center}}
+
+
+/* MIDIA */
+.media-section{background:var(--bg);border-bottom:1px solid var(--line)}
+.media-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.media-lead{color:#d7deea;font-size:18px;margin:6px 0 20px}
+.media-lead strong{color:var(--orange)}
+.media-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.media-tags span{font-size:13px;border:1px solid var(--blue);color:var(--blue2);padding:6px 12px;border-radius:50px}
+.media-clip{position:relative;background:#fff;border-radius:18px;padding:14px;border:3px solid var(--orange);box-shadow:0 0 60px rgba(255,122,26,.25);transform:rotate(1.5deg)}
+.media-clip img{width:100%;display:block;border-radius:8px}
+.media-badge{position:absolute;top:-16px;left:20px;background:var(--orange);color:#111;font-weight:900;font-size:13px;letter-spacing:2px;padding:6px 14px;border-radius:8px}
+@media(max-width:820px){.media-grid{grid-template-columns:1fr}.media-text,.media-text h2,.media-text .awards-kicker{text-align:center!important}.media-tags{justify-content:center}.media-clip{transform:none}}
+
+/* WHAT */
+.what-section{background:var(--bg2);border-top:1px solid var(--line)}
+.what-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.what-card{background:var(--card);border-radius:18px;padding:30px;border:1px solid var(--line)}
+.what-card.no{border-top:4px solid var(--red)}
+.what-card.yes{border-top:4px solid var(--blue)}
+.what-card h3{font-size:20px;font-weight:800;margin-bottom:16px}
+.what-card.no h3{color:var(--red)}
+.what-card.yes h3{color:var(--blue2)}
+.what-card ul{list-style:none}
+.what-card li{padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;color:#d7deea}
+.what-card li:last-child{border:none}
+
+/* CALC */
+.calc-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.calc-form,.calc-result{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px}
+.calc-field{margin-bottom:18px}
+.calc-field label{display:block;font-weight:700;font-size:15px;margin-bottom:8px}
+.calc-field input,.calc-field select{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--text);padding:14px;border-radius:10px;font-size:16px;font-family:inherit}
+.calc-field input:focus,.calc-field select:focus{outline:none;border-color:var(--blue)}
+.hint{display:block;font-size:12px;color:var(--text-muted);margin-top:6px}
+.btn-calc{width:100%;background:var(--blue);color:#fff;border:none;padding:16px;border-radius:10px;font-weight:800;font-size:16px;cursor:pointer;font-family:inherit}
+.btn-calc:hover{background:var(--blue2)}
+.calc-result{display:flex;flex-direction:column;justify-content:center;text-align:center;background:linear-gradient(160deg,#0f1a30,#0a0f18);border-color:var(--blue)}
+.result-label{color:var(--text-muted);font-size:15px}
+.result-value{font-size:clamp(36px,6vw,52px);font-weight:900;color:var(--orange);margin:10px 0}
+.result-fill{color:var(--text-muted);font-size:14px}
+.result-details,.result-warning,.result-cta{display:none}
+.result-details.show,.result-cta.show{display:block}
+.result-warning.show{display:flex}
+.result-row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;text-align:left}
+.result-row span:last-child{font-weight:700;text-align:right}
+.result-warning{gap:10px;align-items:flex-start;text-align:left;background:rgba(255,122,26,.1);border:1px solid var(--orange);border-radius:10px;padding:14px;margin:16px 0;font-size:14px}
+.btn-result{display:block;background:linear-gradient(135deg,var(--orange),var(--orange2));color:#111;font-weight:800;padding:16px;border-radius:10px;text-decoration:none;font-size:16px}
+.btn-result small{display:block;font-weight:600;font-size:12px;margin-top:4px}
+.how-calc{grid-column:1/-1;background:var(--bg2);border-left:4px solid var(--blue);border-radius:10px;padding:16px 20px;font-size:14px;color:var(--text-muted)}
+.how-calc strong{display:block;color:var(--text);margin-bottom:4px}
+
+/* REPORT */
+.report-section{background:var(--bg2);border-top:1px solid var(--line)}
+.report-warning{display:inline-block;background:rgba(250,204,21,.1);border:1px solid var(--yellow);color:var(--yellow);font-size:13px;font-weight:700;padding:6px 14px;border-radius:50px;margin-bottom:16px}
+.report-tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.report-tab{background:var(--card);border:1px solid var(--line);color:var(--text);padding:12px 20px;border-radius:10px;font-weight:700;cursor:pointer;font-family:inherit;font-size:14px}
+.report-tab.active-aaa{background:var(--green);color:#0a0a0a;border-color:var(--green)}
+.report-tab.active-b{background:var(--yellow);color:#0a0a0a;border-color:var(--yellow)}
+.report-tab.active-c{background:var(--red);color:#fff;border-color:var(--red)}
+.report-card{display:none;max-width:780px;margin:0 auto;background:#fff;color:#111;border-radius:16px;padding:26px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.report-card.active{display:block}
+.report-header{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:2px solid #eef1f6;padding-bottom:16px;margin-bottom:16px}
+.report-title{font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:.5px}
+.report-name{font-size:20px;font-weight:800;color:#0b1c3d}
+.report-specialist{font-size:13px;color:var(--blue)}
+.report-badge-aaa,.report-badge-b,.report-badge-c{align-self:center;padding:8px 14px;border-radius:8px;font-weight:700;font-size:13px}
+.report-badge-aaa{background:#dcfce7;color:#166534}
+.report-badge-b{background:#fef9c3;color:#854d0e}
+.report-badge-c{background:#fee2e2;color:#991b1b}
+.report-conclusion{font-size:14px;color:#374151;margin-bottom:18px}
+.report-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.metric-card{background:#f5f7fb;border-radius:10px;padding:14px;text-align:center}
+.metric-label{font-size:11px;text-transform:uppercase;color:#6b7280;font-weight:700}
+.metric-value{font-size:22px;font-weight:900;margin-top:4px}
+.metric-value.green{color:#16a34a}.metric-value.yellow{color:#ca8a04}.metric-value.red{color:#dc2626}
+.report-more{text-align:center;margin-top:16px;font-size:13px;color:var(--blue);font-weight:700}
+.report-note{text-align:center;color:var(--text-muted);margin-top:26px;font-size:15px}
+.report-note strong{color:var(--orange)}
+
+/* OFFER */
+.offer-badge{display:inline-block;background:var(--orange);color:#111;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:1px;padding:6px 16px;border-radius:50px}
+.offer-card{max-width:520px;margin:20px auto 0;background:linear-gradient(160deg,#0f1a30,#090d15);border:2px solid var(--blue);border-radius:20px;padding:36px 28px;box-shadow:0 0 60px rgba(30,111,255,.25)}
+.offer-card h3{font-size:24px;font-weight:900}
+.offer-card .desc{color:var(--text-muted);margin-bottom:18px}
+.offer-price-old{color:var(--text-muted);text-decoration:line-through;font-size:18px}
+.offer-price{font-size:18px;margin:4px 0}
+.offer-price strong{display:block;font-size:56px;font-weight:900;color:var(--orange);line-height:1.1}
+.offer-price span{font-size:14px;color:var(--text-muted)}
+.offer-installment{font-size:15px;margin:8px 0}
+.offer-coffee{font-size:14px;color:var(--text-muted);margin-bottom:22px}
+.offer-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:18px}
+.offer-tag{font-size:12px;background:var(--card);border:1px solid var(--line);padding:6px 12px;border-radius:50px;color:#cbd5e1}
+
+/* PROOF */
+.proof-section{background:var(--bg2);border-top:1px solid var(--line)}
+.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:860px;margin:0 auto}
+.proof-card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.proof-card img{width:100%;height:380px;object-fit:cover;object-position:top;display:block}
+.proof-card div{padding:18px}
+.proof-card strong{display:block;color:var(--orange);font-size:18px;font-weight:900}
+.proof-card p{color:var(--text-muted);font-size:14px}
+
+/* SPECIALIST */
+.specialist-card{display:grid;grid-template-columns:260px 1fr;gap:30px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;max-width:900px;margin:0 auto}
+.specialist-photo{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px;border:3px solid var(--blue)}
+.specialist-name{font-size:28px;font-weight:900}
+.specialist-role{color:var(--blue2);font-weight:600;font-size:14px;margin-bottom:18px}
+.specialist-stats{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.stat{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 16px;text-align:center;min-width:110px}
+.stat-value{font-size:22px;font-weight:900;color:var(--orange)}
+.stat-label{font-size:12px;color:var(--text-muted)}
+.specialist-quote{font-style:italic;color:#d7deea;border-left:3px solid var(--orange);padding-left:14px}
+
+/* CTA FINAL */
+.cta-final{text-align:center;background:radial-gradient(circle at 50% 0,rgba(30,111,255,.3),transparent 60%),var(--bg)}
+.trust-line{color:var(--text-muted);font-size:14px;margin-top:14px}
+.extra-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
+.extra-tags span{font-size:13px;border:1px solid var(--blue);color:var(--blue2);padding:6px 14px;border-radius:50px}
+
+/* FAQ */
+.faq-section{background:var(--bg2);border-top:1px solid var(--line)}
+.faq-list{max-width:760px;margin:0 auto}
+.faq-item{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;background:none;border:none;color:var(--text);font-family:inherit;font-size:16px;font-weight:700;padding:18px 20px;cursor:pointer;text-align:left}
+.faq-icon{color:var(--orange);font-size:22px;transition:transform .2s}
+.faq-answer{display:none;padding:0 20px 18px;color:var(--text-muted);font-size:15px}
+.faq-item.open .faq-answer{display:block}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+
+/* FOOTER */
+footer{background:#000;padding:50px 0 24px;border-top:3px solid var(--blue)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+footer h4{color:var(--orange);font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+footer p,footer a{color:var(--text-muted);font-size:14px;text-decoration:none}
+footer a:hover{color:var(--blue2)}
+.footer-bottom{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;text-align:center}
+
+
+@media(max-width:820px){
+section{padding:56px 0}
+.hero-grid,.what-grid,.calc-wrapper,.proof-grid,.specialist-card,.footer-grid{grid-template-columns:1fr}
+.hero{text-align:center}.hero-text{padding-bottom:10px}.hero-sub{justify-content:center}.hero-lead{margin-left:auto;margin-right:auto}
+.hero-tag{left:8px;bottom:30px}
+.report-metrics{grid-template-columns:1fr}
+.specialist-card{text-align:center}.specialist-photo{max-width:220px;margin:0 auto}.specialist-stats{justify-content:center}
+.specialist-quote{text-align:left}
+.proof-card img{height:320px}
+}
+</style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','29323367763995285');fbq('init','1508520344528340');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1508520344528340&ev=PageView&noscript=1"/><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=29323367763995285&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+</head>
+<body id="_kkcaG5wcEVaWMp10NhAhgLm5gws1" data-page="_gmRgeYxWwjlYJkNKV0ff" data-page-type="html" data-atomic-uid="kkcaG5wcEVaWMp10NhAhgLm5gws1" data-page-version="mwu1j8hm">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <div class="hero-badge">Check-up do Rating Bancário</div>
+      <h1>Descubra quanto o seu CPF deveria liberar de <span>crédito hoje!</span></h1>
+      <p class="hero-lead">Entenda o que os bancos realmente veem sobre você, e o que está travando o seu crédito.</p>
+      <div class="hero-sub"><span>Sem cadastro</span><span>Sem cartão</span><span>Atendimento global</span></div>
+      <a href="#calc-section" class="btn-primary">Quero descobrir o meu agora →</a>
+      <div class="hero-awards"><div class="award-pill">🏆 <b>Black 1M</b><small>Greenn</small></div><div class="award-pill">🏆 <b>5 Milhões em saques</b><small>Tribo Pay</small></div><div class="award-pill">📰 <b>Destaque na mídia</b><small>Alphaville (SP)</small></div></div>
+    </div>
+    <div class="hero-photo">
+      <img src="https://www.consultoronline.pro/wesley/hero.jpg" alt="Wesley Zugel">
+      <div class="hero-tag"><strong>Wesley Zugel</strong><small>Especialista Financeiro</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIOS -->
+<section class="awards-section">
+  <div class="container">
+    <div class="awards-kicker">Reconhecimento do mercado</div>
+    <h2>Resultados que viraram <span>placa na parede</span></h2>
+    <p class="sub">Antes de confiar o seu CPF a alguém, veja quem está por trás do seu Check-up.</p>
+    <div class="awards-grid">
+      <div class="award-card"><div class="award-img"><img src="https://www.consultoronline.pro/wesley/placa1m.jpg" alt="Wesley Zugel com a placa Black 1M"></div><div class="award-info"><div class="award-num">BLACK <span>1M</span></div><p><strong>R$ 1 milhão em saques</strong> reconhecido pela Greenn.</p></div></div>
+      <div class="award-card"><div class="award-img"><img src="https://www.consultoronline.pro/wesley/placa5m.jpg" alt="Wesley Zugel no escritório com a placa 5 Milhões em Saques da Tribo Pay"></div><div class="award-info"><div class="award-num"><span>5</span> MILHÕES</div><p><strong>R$ 5 milhões em saques</strong> reconhecido pela Tribo Pay.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NA MIDIA -->
+<section class="media-section">
+  <div class="container media-grid">
+    <div class="media-text">
+      <div class="awards-kicker" style="text-align:left">Na mídia</div>
+      <h2 style="text-align:left">Reconhecido em <span>evento nacional</span></h2>
+      <p class="media-lead">Wesley Zugel, empresário de Goiânia, recebeu a <strong>placa de faturamento de R$ 100 mil</strong> em evento nacional em Alphaville (SP).</p>
+      <div class="media-tags"><span>📰 Notícia · Negócios</span><span>📍 Alphaville (SP)</span><span>🗓 Julho de 2026</span></div>
+      <a href="#calc-section" class="btn-primary">Quero fazer meu Check-up →</a>
+    </div>
+    <div class="media-clip"><div class="media-badge">NA MÍDIA</div><img src="https://www.consultoronline.pro/wesley/noticia.jpg" alt="Notícia: Empresário de Goiânia é reconhecido em evento nacional e recebe placa de faturamento de R$ 100 mil em Alphaville (SP)"></div>
+  </div>
+</section>
+
+<!-- O QUE É -->
+<section class="what-section">
+  <div class="container">
+    <h2>Antes de qualquer coisa: o que é e o que <span>NÃO é</span></h2>
+    <p class="sub">Transparência total. Pra você decidir com base no que o produto realmente entrega.</p>
+    <div class="what-grid">
+      <div class="what-card no"><h3>✕ O que NÃO é</h3><ul><li>Não é serviço de "limpa nome"</li><li>Não é promessa de aprovação de crédito</li><li>Não é simpatia, milagre ou consultoria mágica</li><li>Não é vinculado ao BACEN, SPC ou Serasa</li><li>Não cobra taxa antecipada de empréstimo</li></ul></div>
+      <div class="what-card yes"><h3>✓ O que É</h3><ul><li>Relatório informativo com até 8 páginas de dados consultados em bancos, Receita Federal e Banco Central do Brasil</li><li>Classificação de risco AAA até C- combinada com a sua renda presumida pra limite atual e sugerido exato</li><li>Carteira de crédito detalhada do seu CPF com valores e datas de vencimento</li><li>Análise combinada de 15+ indicadores que revelam como alcançar o crédito</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="calc-section" id="calc-section">
+  <div class="container">
+    <h2>Calcule em 30 segundos quanto seu <span>CPF deveria liberar.</span></h2>
+    <p class="sub">4 perguntas. Sem cadastro. Sem cartão.</p>
+    <div class="calc-wrapper">
+      <div class="calc-form">
+        <div class="calc-field"><label>Sua renda mensal líquida</label><input type="number" id="renda" placeholder="Ex: 3500" min="0"><span class="hint">A renda é o ponto de partida do cálculo.</span></div>
+        <div class="calc-field"><label>Sua idade</label><input type="number" id="idade" placeholder="Ex: 35" min="18" max="99"><span class="hint">O sistema favorece a faixa 30-55 anos.</span></div>
+        <div class="calc-field"><label>Sua situação atual</label><select id="situacao"><option value="">Selecione</option><option value="3.5">CLT (carteira assinada)</option><option value="4.0">Servidor público</option><option value="2.5">Autônomo / Profissional liberal</option><option value="2.0">MEI</option><option value="3.0">Aposentado / Pensionista INSS</option><option value="3.2">Empresário (LTDA, EIRELI)</option></select><span class="hint">Cada situação tem um multiplicador diferente.</span></div>
+        <div class="calc-field"><label>Seu estado</label><select id="estado"><option value="">Selecione</option><option value="0.94">AC</option><option value="0.95">AL</option><option value="0.94">AP</option><option value="0.98">AM</option><option value="1.00">BA</option><option value="0.99">CE</option><option value="1.01">DF</option><option value="0.98">ES</option><option value="1.00">GO</option><option value="0.96">MA</option><option value="0.97">MT</option><option value="0.97">MS</option><option value="1.03">MG</option><option value="0.97">PA</option><option value="0.96">PB</option><option value="1.02">PR</option><option value="0.99">PE</option><option value="0.95">PI</option><option value="1.04">RJ</option><option value="0.96">RN</option><option value="1.02">RS</option><option value="0.94">RO</option><option value="0.94">RR</option><option value="1.01">SC</option><option value="1.05">SP</option><option value="0.95">SE</option><option value="0.93">TO</option></select></div>
+        <button class="btn-calc" onclick="calcular()">Calcular meu limite</button>
+      </div>
+      <div class="calc-result">
+        <p class="result-label">O seu poder de crédito deveria ser no mínimo de:</p>
+        <div class="result-value" id="result-value">R$ 0</div>
+        <p class="result-fill" id="result-fill">Preencha o formulário ao lado</p>
+        <div class="result-details" id="result-details"><div class="result-row"><span>Faixa estimada:</span><span id="result-faixa">—</span></div><div class="result-row"><span>Média que as instituições deveriam liberar:</span><span id="result-media">—</span></div></div>
+        <div class="result-warning" id="result-warning"><span>⚠</span><div>Você pode estar <strong>deixando de acessar até <span id="result-perda">R$ 0</span></strong> em crédito.</div></div>
+        <div class="result-cta" id="result-cta"><a href="https://pay.hubla.com.br/vRHnSF0nUgdUpmoLKM0k" class="btn-result" target="_blank">Quero descobrir o que está travando meu CPF<small>Relatório completo em até 48h no seu WhatsApp · R$99</small></a></div>
+      </div>
+      <div class="how-calc"><strong>Como esse número é calculado</strong>O cálculo é uma estimativa estatística baseada na fórmula que o sistema bancário brasileiro usa como ponto de partida.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATÓRIO EXEMPLO -->
+<section class="report-section">
+  <div class="container">
+    <h2>Veja um EXEMPLO do relatório que você <span>recebe após a compra</span></h2>
+    <p class="sub">Clique abaixo nas opções para entender mais:</p>
+    <div style="text-align:center"><div class="report-warning">⚠ Exemplo simulado · Dados fictícios</div></div>
+    <div class="report-tabs"><button class="report-tab active-aaa" onclick="showReport('aaa',this)">✓ Aprovado AAA</button><button class="report-tab" onclick="showReport('b',this)">⚠ Atenção B</button><button class="report-tab" onclick="showReport('c',this)">✕ Reprovado C-</button></div>
+    <div class="report-card active" id="report-aaa"><div class="report-header"><div><div class="report-title">Rating Bancário | Consulta de Crédito</div><div class="report-name">Wesley Zugel</div><div class="report-specialist">Especialista Financeiro</div></div><div class="report-badge-aaa">i Conclusão de Análise Inteligente: Aprovado</div></div><div class="report-conclusion">Não foram encontrados registros que indiquem inadimplência ou qualquer outro fator que represente risco.</div><div class="report-metrics"><div class="metric-card"><div class="metric-label">Classificação do Risco</div><div class="metric-value green">AAA</div></div><div class="metric-card"><div class="metric-label">Comprometimento de Renda</div><div class="metric-value green">7%</div></div><div class="metric-card"><div class="metric-label">Limite Sugerido</div><div class="metric-value green">R$ 41.625,00</div></div></div><div class="report-more">+ 7 páginas com Resumo, Detalhes e Carteira de Crédito completa</div></div>
+    <div class="report-card" id="report-b"><div class="report-header"><div><div class="report-title">Rating Bancário | Consulta de Crédito</div><div class="report-name">Wesley Zugel</div><div class="report-specialist">Especialista Financeiro</div></div><div class="report-badge-b">i Conclusão: Atenção</div></div><div class="report-conclusion">Foram identificados fatores de atenção que podem impactar a aprovação de crédito.</div><div class="report-metrics"><div class="metric-card"><div class="metric-label">Classificação do Risco</div><div class="metric-value yellow">B</div></div><div class="metric-card"><div class="metric-label">Comprometimento de Renda</div><div class="metric-value yellow">38%</div></div><div class="metric-card"><div class="metric-label">Limite Sugerido</div><div class="metric-value yellow">R$ 5.580,00</div></div></div><div class="report-more">+ 7 páginas completas</div></div>
+    <div class="report-card" id="report-c"><div class="report-header"><div><div class="report-title">Rating Bancário | Consulta de Crédito</div><div class="report-name">Wesley Zugel</div><div class="report-specialist">Especialista Financeiro</div></div><div class="report-badge-c">i Conclusão: Reprovado</div></div><div class="report-conclusion">Foram encontrados múltiplos registros de inadimplência, protestos e restrições ativas.</div><div class="report-metrics"><div class="metric-card"><div class="metric-label">Classificação do Risco</div><div class="metric-value red">C-</div></div><div class="metric-card"><div class="metric-label">Comprometimento de Renda</div><div class="metric-value red">74%</div></div><div class="metric-card"><div class="metric-label">Limite Sugerido</div><div class="metric-value red">R$ 0</div></div></div><div class="report-more">+ 7 páginas completas</div></div>
+    <p class="report-note">Junto com o seu relatório você poderá receber <strong>orientação personalizada</strong> para corrigir a sua situação: Rating, Bacen, Consórcio e Capital de giro.</p>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section class="offer-section" id="oferta">
+  <div class="container" style="text-align:center">
+    <h2>Compre agora o seu Check-up e saiba o que <span>de fato está impedindo você</span></h2>
+    <p class="sub">Pagamento único. Relatório completo em até 48h no seu WhatsApp.</p>
+    <div class="offer-badge">Oferta limitada</div>
+    <div class="offer-card">
+      <h3>Check-up do Rating Bancário</h3>
+      <p class="desc">Tudo o que o banco vê sobre o seu CPF, em 8 páginas.</p>
+      <div class="offer-price-old">R$ 197</div>
+      <div class="offer-price">por apenas: <strong>R$99</strong> <span>à vista no PIX</span></div>
+      <div class="offer-installment">ou <strong>12x de R$ 10,17</strong> no cartão</div>
+      <p class="offer-coffee">☕ Menos de <strong>35 centavos por dia</strong>.</p>
+      <a href="https://pay.hubla.com.br/vRHnSF0nUgdUpmoLKM0k" class="btn-primary" style="justify-content:center;width:100%" target="_blank">Quero o meu Check-up agora →</a>
+      <div class="offer-tags"><span class="offer-tag">Compra segura</span><span class="offer-tag">Dados protegidos</span><span class="offer-tag">Suporte humano</span><span class="offer-tag">Entrega em até 48h</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALISTA -->
+<section class="specialist-section">
+  <div class="container">
+    <h2>Quem assina o <span>relatório</span></h2>
+    <p class="sub">Especialista Financeiro em Rating, Bacen, Consórcio e Capital de giro.</p>
+    <div class="specialist-card">
+      <img src="https://www.consultoronline.pro/wesley/perfil.jpg" alt="Wesley Zugel" class="specialist-photo">
+      <div>
+        <div class="specialist-name">Wesley Zugel</div>
+        <div class="specialist-role">Especialista Financeiro · Rating | Bacen | Consórcio | Capital de giro</div>
+        <div class="specialist-stats">
+          <div class="stat"><div class="stat-value">12 mil</div><div class="stat-label">Seguidores</div></div>
+          <div class="stat"><div class="stat-value">5 Milhões</div><div class="stat-label">em saques</div></div>
+          <div class="stat"><div class="stat-value">Global</div><div class="stat-label">Atendimento</div></div>
+        </div>
+        <p class="specialist-quote">"Soluções para liberar o seu crédito. Com Rating, Bacen, Consórcio e Capital de giro, você entende o que os bancos veem e vira o jogo a seu favor."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="container">
+    <h2>Você já calculou o limite e viu como é o relatório.</h2>
+    <p class="sub">Agora descubra o que está REALMENTE no seu CPF. Em até 48h no seu WhatsApp.</p>
+    <a href="https://pay.hubla.com.br/vRHnSF0nUgdUpmoLKM0k" class="btn-primary" target="_blank">Fazer meu Check-up por R$99 →</a>
+    <p class="trust-line">Pagamento seguro. Relatório completo em até 48 horas no seu WhatsApp.</p>
+    <div class="extra-tags"><span>8 páginas detalhadas</span><span>Dados oficiais SCR/BACEN</span><span>Entrega em até 48h</span><span>Compra segura</span></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <h2>Perguntas <span>Frequentes</span></h2>
+    <p class="sub">As dúvidas mais comuns antes de pedir o seu Check-up.</p>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Os dados dos relatórios são confiáveis?<span class="faq-icon">+</span></button><div class="faq-answer">Sim. Todas as informações são extraídas diretamente do <strong>SCR/BACEN</strong>, regulamentado pela Resolução BCB 4.571/2017.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">O que é o BACEN?<span class="faq-icon">+</span></button><div class="faq-answer">O <strong>BACEN</strong> é o órgão público que regula todo o sistema financeiro nacional e mantém o SCR, banco de dados oficial com o histórico de crédito de todos os CPFs no Brasil.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">O Check-up garante a aprovação do meu crédito?<span class="faq-icon">+</span></button><div class="faq-answer">Não. É um <strong>relatório informativo de diagnóstico</strong>. O resultado depende das ações tomadas a partir das informações reveladas.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Em quanto tempo recebo?<span class="faq-icon">+</span></button><div class="faq-answer">Em até 48h após a confirmação do pagamento, no WhatsApp cadastrado no checkout, em PDF.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Vocês atendem onde eu moro?<span class="faq-icon">+</span></button><div class="faq-answer">Sim. O atendimento é 100% online e <strong>global</strong>: atendemos brasileiros no Brasil e no exterior.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Como é feito o pagamento?<span class="faq-icon">+</span></button><div class="faq-answer">Via pagamento seguro: cartão de crédito ou PIX à vista (R$99).</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><h4>Sobre</h4><p>O Check-up do Rating Bancário é um serviço de diagnóstico financeiro baseado em dados oficiais do <strong>SCR/BACEN</strong> (Resolução BCB 4.571/2017). Não constitui promessa de aprovação de crédito.</p></div>
+      <div><h4>Contato</h4><a href="https://instagram.com/wesleyzugel" target="_blank">@wesleyzugel</a></div>
+      <div><h4>Especialista</h4><p><strong>Wesley Zugel</strong></p><p>Rating · Bacen · Consórcio · Capital de giro</p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Wesley Zugel. Todos os direitos reservados.</p></div>
+  </div>
+</footer>
+
+
+<script>
+function calcular(){const renda=parseFloat(document.getElementById('renda').value)||0;const idade=parseInt(document.getElementById('idade').value)||0;const situacao=parseFloat(document.getElementById('situacao').value)||0;const estado=parseFloat(document.getElementById('estado').value)||0;if(!renda||!idade||!situacao||!estado){alert('Por favor, preencha todos os campos.');return;}let idadeMult=1.0;if(idade>=30&&idade<=55)idadeMult=1.15;else if(idade>=25&&idade<30)idadeMult=1.05;else if(idade>55&&idade<=65)idadeMult=1.05;else idadeMult=0.95;const limite=renda*situacao*idadeMult*estado;const limiteMin=Math.round(limite*0.85);const limiteMax=Math.round(limite*1.25);const mediaMin=Math.round(limite*0.9);const mediaMax=Math.round(limite*1.1);const perda=Math.round(limiteMax*0.4);const fmt=(v)=>'R$ '+v.toLocaleString('pt-BR');document.getElementById('result-value').textContent=fmt(Math.round(limite));document.getElementById('result-fill').textContent='';document.getElementById('result-faixa').textContent=fmt(limiteMin)+' a '+fmt(limiteMax);document.getElementById('result-media').textContent='Entre '+fmt(mediaMin)+' e '+fmt(mediaMax);document.getElementById('result-perda').textContent=fmt(perda);document.getElementById('result-details').classList.add('show');document.getElementById('result-warning').classList.add('show');document.getElementById('result-cta').classList.add('show');}
+function showReport(type,btn){document.querySelectorAll('.report-card').forEach(c=>c.classList.remove('active'));document.querySelectorAll('.report-tab').forEach(t=>t.className='report-tab');document.getElementById('report-'+type).classList.add('active');btn.classList.add('active-'+type);}
+function toggleFaq(btn){const item=btn.closest('.faq-item');const isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open');}
+</script>
+<script>
+document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';if(h.indexOf('http')===0&&h.indexOf('instagram.com')<0){if(window.fbq)fbq('track','InitiateCheckout',{content_name:'Check-up do Rating Bancário',value:99,currency:'BRL'});}});
+</script>
+<!--atomicat:track--><!--/atomicat:track--></body>
+</html>
